@@ -1,0 +1,10 @@
+[
+  {
+    "name": "1) A simple Bootstrap static page",
+    "value": "static"
+  },
+  {
+    "name": "2) Node.js express app with jQuery",
+    "value": "express"
+  }
+]

@@ -1,0 +1,12 @@
+.git
+.git/
+.idea
+.idea/
+
+node_modules
+node_modules/
+
+archives
+archives/
+
+push-to-cdn.sh
