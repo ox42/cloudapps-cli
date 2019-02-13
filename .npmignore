@@ -11,4 +11,5 @@ node_modules/
 archives
 archives/
 
+push-to-cdn.bat
 push-to-cdn.sh
