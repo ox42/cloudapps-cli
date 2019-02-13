@@ -93,10 +93,34 @@ var run = function() {
 
                         }).then(function(){
 
+                            if (fs.existsSync(path.join(project_directory, 'note.nfo'))) {
+
+                                return new Promise(function(resolve){
+                                    fs.readFile(path.join(project_directory, 'note.nfo'), function(error, content){
+
+                                        if (!error && content) {
+                                            resolve(content);
+                                        } else {
+                                            resolve(undefined);
+                                        }
+                                    });
+                                });
+                            } else {
+                                return undefined;
+                            }
+                        }).then(function(note){
+
                             console.log('==================');
                             console.log('Project successfully created.');
-                            console.log('Go to the project directory to start working on it.');
-                            console.log('Good luck!');
+                            console.log('Go to the project directory to play with it.');
+
+                            if (note){
+                                console.log();
+                                console.log(note);
+                                console.log();
+                            }
+
+                            console.log('Good luck, and don\'t get to have fun!');
                         });
 
 

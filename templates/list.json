@@ -1,10 +1,26 @@
 [
   {
-    "name": "1) A simple Bootstrap static page",
-    "value": "static"
+    "name": "1) A simple Bootstrap starter page",
+    "value": "bootstrap"
   },
   {
-    "name": "2) Node.js express app with jQuery",
-    "value": "express"
+    "name": "2) A landing page template based on Bootstrap",
+    "value": "landing"
+  },
+  {
+    "name": "3) Node.js Express app with Gulp, Bootstrap and jQuery",
+    "value": "express-basic"
+  },
+  {
+    "name": "4) Node.js Express app with a database and authentication",
+    "value": "express-full"
+  },
+  {
+    "name": "5) A React boilerplate app with Redux",
+    "value": "react-redux"
+  },
+  {
+    "name": "6) A Vue.js starter kit with Buefy",
+    "value": "vue-buefy"
   }
 ]
