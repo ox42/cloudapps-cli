@@ -1,0 +1,35 @@
+{
+  "name": "express-starter-kit",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "gulp": "gulp",
+    "start": "gulp debug",
+    "build": "gulp build"
+  },
+  "dependencies": {
+    "bluebird": "^3.5.3",
+    "body-parser": "^1.18.3",
+    "config": "^3.0.1",
+    "cookie-parser": "~1.4.4",
+    "debug": "~2.6.9",
+    "ejs": "~2.6.1",
+    "express": "~4.16.4",
+    "gulp": "^4.0.0",
+    "gulp-cache-bust": "^1.4.0",
+    "gulp-clean-css": "^4.0.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-nodemon": "^2.4.2",
+    "gulp-rename": "^1.4.0",
+    "gulp-uglify": "^3.0.1",
+    "http-errors": "~1.6.2",
+    "lodash": "^4.17.11",
+    "moment": "^2.24.0",
+    "morgan": "~1.9.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.2.2",
+    "@babel/preset-env": "^7.3.1",
+    "gulp-babel": "^8.0.0"
+  }
+}
