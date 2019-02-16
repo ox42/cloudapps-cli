@@ -6,14 +6,10 @@ var path = require('path');
 var logger = require('morgan');
 var createError = require('http-errors');
 
-var expose = require('./expose');
-expose('_', require('lodash'));
-expose('config', require('config'));
-expose('moment', require('moment'));
-expose('asyncWrap', require('./asyncWrap'));
-
-
 var app = express();
+
+var init = require('./init.js');
+init.run();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'build/views'));

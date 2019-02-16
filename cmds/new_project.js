@@ -6,6 +6,8 @@ var path = require('path');
 var process = require('process');
 var inquirer = require('inquirer');
 
+var Promise = require('bluebird');
+
 var run = function() {
 
     return Promise.resolve()
@@ -16,7 +18,7 @@ var run = function() {
             console.log('Please wait, fetching templates...');
             console.log('=================');
 
-            var templates_destination = chance();
+            var templates_destination = chance.file();
 
             return new Promise(function(resolve, reject){
                 fetch("list.json", templates_destination, function(err){
@@ -50,7 +52,7 @@ var run = function() {
                     }
                 ])
                 .then(answers => {
-                    var destination = chance();
+                    var destination = chance.file();
 
                     console.log(); console.log();
                     console.log('=================');
@@ -90,6 +92,34 @@ var run = function() {
                                 if (error) { return reject(error); }
                                 resolve();
                             });
+
+                        }).then(function(){
+
+                            function recursiveWalk(directory) {
+
+                                let list = fs.readdirSync(directory);
+                                list.forEach(function(file) {
+                                    file = directory + '/' + file;
+                                    let stat = fs.statSync(file);
+
+                                    if (stat && stat.isDirectory()) {
+                                        recursiveWalk(file);
+                                    } else {
+
+                                        if (file.endsWith('.json') || file.endsWith('.js') || file.endsWith('.html')) {
+
+                                            let fileContents = fs.readFile(file, 'utf8');
+                                            if (fileContents.includes('{CLOUDAPPS_RANDOM_STRING_VALUE}')) {
+                                                fileContents = fileContents.replace(/{CLOUDAPPS_RANDOM_STRING_VALUE}/g, chance.hash());
+
+                                                fs.writeFileSync(file, fileContents);
+                                            }
+                                        }
+                                    }
+                                });
+                            }
+
+                            recursiveWalk(project_directory);
 
                         }).then(function(){
 

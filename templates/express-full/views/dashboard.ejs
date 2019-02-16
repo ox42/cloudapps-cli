@@ -1,0 +1,46 @@
+<%- include('partials/head.ejs'); %>
+<%- include('partials/navigation.ejs'); %>
+
+
+<div class="container">
+    <div class="row">
+        <div class="col text-center">
+
+            <h2 class="mb-4"><%= APP_NAME %></h2>
+
+            <% if (notes.length === 0) { %>
+                <div>
+                    <p class="mt-4 mb-5 py-3">You don't have any notes.<br />Start by creating one using the button below.</p>
+                </div>
+            <% } %>
+
+            <div class="row">
+
+                <% notes.forEach(note => { %>
+                    <div class="col-12 col-md-6 col-lg-4">
+
+                        <div class="card text-left mt-2 mb-3">
+                            <div class="card-body">
+                                <h5 class="card-title"><%= note.title %></h5>
+                                <p class="card-text"><%= note.content %></p>
+
+                                <p class="text-right mb-0"><a href="/user/note/<%= note.id %>/edit" class="card-link">Edit note</a></p>
+                            </div>
+                        </div>
+
+                    </div>
+                <% }); %>
+
+            </div>
+
+
+            <p class="mt-4 text-right">
+                <a href="/user/note/add" class="btn btn-primary">Add note</a>
+            </p>
+
+        </div>
+    </div>
+</div>
+
+
+<%- include('partials/footer.ejs'); %>

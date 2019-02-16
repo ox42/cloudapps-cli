@@ -2,12 +2,12 @@ var gulp = require('gulp');
 var process = require('process');
 var cachebust = require('gulp-cache-bust');
 
+var config = require('config');
 var concat = require('gulp-concat');
 var babel = require('gulp-babel');
 var uglifyJS = require('gulp-uglify');
 var nodemon = require('gulp-nodemon');
 var cleanCSS = require("gulp-clean-css");
-
 
 //Concatenate & Minify JS
 gulp.task('scripts', function() {
@@ -43,9 +43,10 @@ gulp.task('develop', function() {
 
     var monitor = nodemon({ script: './bin/www',
         ext: 'js css ejs json',
-        "verbose": "true",
+        "verbose": false,
+        delay: (config.DATABASE && config.DATABASE.alter ? 10000 : 1000),
         tasks: ['compile'],
-        "ignore": [".idea/*", ".idea\\*", "build/*", "build\\*", "public/dist/*", "public\\dist\\*"],
+        "ignore": [".idea/*", ".idea\\*", "sqlite3/*", "sqlite3\\*", "build/*", "build\\*", "public/dist/*", "public\\dist\\*"],
         "env": {
             "NODE_ENV": "development"
         }});
@@ -58,6 +59,8 @@ gulp.task('develop', function() {
     }).on('restart', function(files) {
         console.log('App restarted due to: ', files);
     });
+
+    return monitor;
 });
 
 

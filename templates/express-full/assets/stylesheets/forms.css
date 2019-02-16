@@ -1,0 +1,13 @@
+.note-form, .auth-form {
+    box-shadow: 2px 2px 3px 3px #f5f5f5;
+    padding: 30px 21px;
+}
+
+.note-form p.form-error, .auth-form p.form-error {
+    display: none;
+
+    font-weight: bold;
+    color: red;
+
+    margin: 30px 0 20px 0;
+}

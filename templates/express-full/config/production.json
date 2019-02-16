@@ -1,0 +1,15 @@
+{
+  "ENVIRONMENT": "production",
+  "SECRET_SALT": "{CLOUDAPPS_RANDOM_STRING_VALUE}",
+
+  "DATABASE": {
+    "dialect": "postgres",
+    "host": "postgres",
+    "database": "express-app",
+
+    "username": "postgres",
+    "password": "postgres",
+    "alter": false,
+    "logging": false
+  }
+}

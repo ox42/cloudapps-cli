@@ -1,0 +1,12 @@
+{
+  "APP_NAME": "My Notes 1.0",
+  "ENVIRONMENT": "development",
+  "SECRET_SALT": "{CLOUDAPPS_RANDOM_STRING_VALUE}",
+
+  "DATABASE": {
+    "dialect": "sqlite",
+    "storage": "./sqlite3/database.sqlite3",
+    "alter": false,
+    "logging": true
+  }
+}
