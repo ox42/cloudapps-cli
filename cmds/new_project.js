@@ -6,9 +6,19 @@ var path = require('path');
 var process = require('process');
 var inquirer = require('inquirer');
 
+var packageInfo = require('../package.json');
 var Promise = require('bluebird');
 
 var run = function() {
+
+    function majorVersion(version) {
+        if (version.indexOf('.') !== version.lastIndexOf('.')) {
+            let lastIndex = version.lastIndexOf('.');
+            version = version.substring(0, lastIndex);
+        }
+
+        return version;
+    }
 
     return Promise.resolve()
         .then(function(){
@@ -30,7 +40,23 @@ var run = function() {
             });
 
         })
+        .then(function(packageData){
+
+            if (packageData && packageInfo && majorVersion(packageData.version) != majorVersion(packageInfo.version)) {
+
+                //ask the user to update to a newer version
+                console.error('\x1b[31m', 'You have an older version of the cloudapps cli.');
+                console.error('Please update it using the command "npm install -g cloudapps" to continue.');
+                console.error('\x1b[0m', '');
+            }
+
+            return packageData.templates;
+        })
         .then(function(templates){
+
+            if (!templates) {
+                return Promise.reject('Please fix the errors above, and try again.');
+            }
 
             console.log();
             console.log('Ok, let\'s start by setting up the new project...');
@@ -156,7 +182,7 @@ var run = function() {
 
                     }).catch(function(err){
                         console.error('\x1b[31m', err);
-                        console.log('\x1b[0m', '');
+                        console.error('\x1b[0m', '');
                     })
 
                 });

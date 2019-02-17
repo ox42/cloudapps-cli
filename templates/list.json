@@ -1,26 +1,30 @@
-[
-  {
-    "name": "1) A simple Bootstrap starter page",
-    "value": "bootstrap"
-  },
-  {
-    "name": "2) A landing page template based on Bootstrap",
-    "value": "landing"
-  },
-  {
-    "name": "3) Node.js Express app with Gulp, Bootstrap and jQuery",
-    "value": "express-basic"
-  },
-  {
-    "name": "4) Node.js Express app with a database and authentication",
-    "value": "express-full"
-  },
-  {
-    "name": "5) A React boilerplate app with Bootstrap and Redux",
-    "value": "react-redux-bootstrap"
-  },
-  {
-    "name": "6) A Vue.js starter kit with Bootstrap and Vuex",
-    "value": "vue-vuex-bootstrap"
-  }
-]
+{
+  "version": "",
+  "templates": [
+    {
+      "name": "1) A simple Bootstrap starter page",
+      "value": "bootstrap"
+    },
+    {
+      "name": "2) A landing page template based on Bootstrap",
+      "value": "landing"
+    },
+    {
+      "name": "3) Node.js Express app with Gulp, Bootstrap and jQuery",
+      "value": "express-basic"
+    },
+    {
+      "name": "4) Node.js Express app with a database and authentication",
+      "value": "express-full"
+    },
+    {
+      "name": "5) A React boilerplate app with Bootstrap and Redux",
+      "value": "react-redux-bootstrap"
+    },
+    {
+      "name": "6) A Vue.js starter kit with Bootstrap and Vuex",
+      "value": "vue-vuex-bootstrap"
+    }
+  ]
+}
+
