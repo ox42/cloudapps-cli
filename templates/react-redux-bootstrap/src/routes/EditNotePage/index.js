@@ -59,7 +59,7 @@ class EditNotePage extends React.Component {
                 <div className="row">
                     <div className="col-12 col-md-10 offset-md-1 col-lg-8 offset-lg-2">
 
-                        <form className="form auth-form mt-4" style={{opacity: this.props.isUpdatingNote ? 0.3 : 1}} onSubmit={(event) => { event.preventDefault(); this.submitForm(); }}>
+                        <form className="form note-form mt-4" style={{opacity: this.props.isUpdatingNote ? 0.3 : 1}} onSubmit={(event) => { event.preventDefault(); this.submitForm(); }}>
                             <h2 className="text-center mt-1 mb-4">Edit note</h2>
 
                             {(this.state.internalError || this.props.failedUpdatingNote) ? <p className="form-error">{ this.state.internalError || 'Failed to update note. Please try again.' }</p> : ''}
