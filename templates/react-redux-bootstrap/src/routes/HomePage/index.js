@@ -1,25 +1,59 @@
 import React from 'react';
-import {Link} from "react-router-dom";
 import config from '../../config/default.json';
+
+import { connect } from "react-redux";
+import { addValue } from "../../store/counter.js";
 
 import './styles.css';
 
-const HomePage = props => (
-    <div className="container">
-        <div className="row">
-            <div className="col text-center">
 
-                <h2>{config.APP_NAME}</h2>
-                <p>Get started by creating an account. Have fun!</p>
+class HomePage extends React.Component {
 
-                <img className="landing-photo" src="/images/notes.jpg" alt="Notes" />
-                    <p>
-                        <Link to="/auth/login" className="btn btn-lg btn-primary">Login</Link> &nbsp;
-                        <Link to="/auth/signup" className="btn btn-lg btn-danger">Sign up</Link>
-                    </p>
+    addValue(value) {
+        this.props.addValue(value);
+    }
+
+    render() {
+        return (
+            <div className="container">
+                <div className="row">
+                    <div className="col text-center">
+
+                        <h2>{config.APP_NAME}</h2>
+                        <p>We help you count easily, without errors.</p>
+
+
+                        <img className="landing-photo" src="/images/counter.jpg" alt="Counter" />
+                        <p className="counter-value">
+                            Counter: <strong>{this.props.counter}</strong><br />
+
+                            {this.props.lastAddition
+                                ? <span style={{ fontSize: '50%' }}>Last value added: { this.props.lastAddition }</span>
+                                : ''}
+                        </p>
+
+                        <p>
+                            <button className="btn btn-primary" onClick={() => { this.addValue(1); }}>Increase by 1</button> &nbsp;
+                            <button className="btn btn-danger" onClick={() => { this.addValue(2); }}>Increase by 2</button>
+                        </p>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
-);
+        )
+    }
+}
 
-export default HomePage;
+function mapStateToProps(state) {
+    return {
+        counter: state.counter.counter,
+        lastAddition: state.counter.lastAddition
+    };
+}
+
+function mapDispatchToProps(dispatch) {
+    return {
+        addValue: (value) => { dispatch(addValue(value)); }
+    };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(HomePage);

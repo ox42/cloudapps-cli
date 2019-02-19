@@ -1,14 +1,12 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 
-import auth from './auth';
-import notes from './notes';
+import counter from './counter';
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
   modules: {
-    auth: auth,
-    notes: notes
+    counter: counter
   }
 });

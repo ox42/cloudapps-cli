@@ -1,41 +1,35 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from "react-router";
 import { Route, Link, Switch } from 'react-router-dom';
 
-import { withRouter } from "react-router";
-import RestrictedRoute from '../../RestrictedRoute';
+import HomePage from '../../routes/HomePage';
 import ConfirmModal from '../../components/ConfirmModal';
 
-import './styles.css';
-import { logoutUser } from "../../store/auth.js";
 import config from '../../config/default.json';
+import { resetCounter } from "../../store/counter.js";
 
-import HomePage from '../../routes/HomePage';
-import LoginPage from '../../routes/LoginPage';
-import SignupPage from '../../routes/SignupPage';
-import DashboardPage from '../../routes/DashboardPage';
-import AddNotePage from '../../routes/AddNotePage';
-import EditNotePage from '../../routes/EditNotePage';
+import './styles.css';
 
 
 class App extends React.PureComponent {
 
     state = {
         navbarToggle: false,
-        logoutModalIsOpen: false
+        resetModalIsOpen: false
     };
 
-    logoutUser() {
-        this.props.logoutUser();
+    resetCounter() {
+        this.props.resetCounter();
     }
 
     render() {
         return (
             <div>
 
-                <ConfirmModal content="Are you sure that you want to logout?" open={this.state.logoutModalIsOpen}
-                              onConfirm={() => { this.setState({ logoutModalIsOpen: false }); this.logoutUser(); }}
-                              onCancel={() => { this.setState({ logoutModalIsOpen: false }); }} />
+                <ConfirmModal content="Are you sure that you want to reset the counter?" open={this.state.resetModalIsOpen}
+                              onConfirm={() => { this.setState({ resetModalIsOpen: false }); this.resetCounter(); }}
+                              onCancel={() => { this.setState({ resetModalIsOpen: false }); }} />
 
                 <nav className="navbar fixed-top navbar-expand-md navbar-dark bg-primary">
                     <div className="container">
@@ -54,17 +48,10 @@ class App extends React.PureComponent {
                                 <li className="nav-item active">
                                     <Link className="nav-link" to="/" onClick={() => { this.setState({ navbarToggle: false }); }}>Home</Link>
                                 </li>
-                                <li className="nav-item">
-                                    <Link className="nav-link" to="/user/dashboard" onClick={() => { this.setState({ navbarToggle: false }); }}>Dashboard</Link>
-                                </li>
 
-                                {this.props.isAuthenticated
-                                    ? (
-                                        <li className="nav-item">
-                                            <a href="/" className="nav-link" onClick={(event) => { event.preventDefault(); this.setState({ navbarToggle: false, logoutModalIsOpen: true }); }}>Logout</a>
-                                        </li>
-                                    )
-                                    : ''}
+                                <li className="nav-item">
+                                    <a href="/" className="nav-link" onClick={(event) => { event.preventDefault(); this.setState({ navbarToggle: false, resetModalIsOpen: true }); }}>Reset</a>
+                                </li>
                             </ul>
                         </div>
                     </div>
@@ -73,12 +60,6 @@ class App extends React.PureComponent {
                 <div>
                     <Switch>
                         <Route exact path="/" component={HomePage} />
-                        <RestrictedRoute exact path="/auth/login" allow={!this.props.isAuthenticated} fallback="/user/dashboard" component={LoginPage} />
-                        <RestrictedRoute exact path="/auth/signup" allow={!this.props.isAuthenticated} fallback="/user/dashboard" component={SignupPage} />
-
-                        <RestrictedRoute exact path="/user/dashboard" allow={this.props.isAuthenticated} fallback="/auth/login" component={DashboardPage} />
-                        <RestrictedRoute exact path="/user/note/add" allow={this.props.isAuthenticated} fallback="/auth/login" component={AddNotePage} />
-                        <RestrictedRoute exact path="/user/note/:id/edit" allow={this.props.isAuthenticated} fallback="/auth/login" component={EditNotePage} />
                     </Switch>
                 </div>
             </div>
@@ -87,16 +68,10 @@ class App extends React.PureComponent {
 }
 
 
-const mapStateToProps = function(state) {
-    return {
-        isAuthenticated: state.auth.isAuthenticated
-    }
-};
-
 function mapDispatchToProps(dispatch) {
     return {
-        logoutUser: () => { dispatch(logoutUser()); }
+        resetCounter: () => { dispatch(resetCounter()); }
     };
 }
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));
+export default withRouter(connect(null, mapDispatchToProps)(App));

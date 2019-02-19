@@ -22,9 +22,16 @@
       "value": "react-redux-bootstrap"
     },
     {
-      "name": "6) A Vue.js starter kit with Bootstrap and Vuex",
+      "name": "6) A complete React app with Bootstrap, Redux and Authentication",
+      "value": "react-redux-bootstrap-auth"
+    },
+    {
+      "name": "7) A Vue.js starter kit with Bootstrap and Vuex",
       "value": "vue-vuex-bootstrap"
+    },
+    {
+      "name": "8) A complete Vue.js app with Bootstrap, Vuex and Authentication",
+      "value": "vue-vuex-bootstrap-auth"
     }
   ]
 }
-

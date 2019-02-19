@@ -1,0 +1,6 @@
+{
+  "APP_NAME": "My Notes 1.0",
+
+  "BACKEND_URL": "https://test.cloudapps.io/secure",
+  "BACKEND_API_KEY": "{CLOUDAPPS_RANDOM_STRING_VALUE}"
+}

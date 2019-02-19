@@ -1,7 +1,12 @@
 .landing-photo {
     width: 90%;
-    max-width: 750px;
+    max-width: 400px;
 
     margin-top: 30px;
     margin-bottom: 70px;
+}
+
+.counter-value {
+    font-size: 2rem;
+    margin: 30px 0;
 }

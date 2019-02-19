@@ -4,12 +4,17 @@
       <div class="col text-center">
 
         <h2>{{APP_NAME}}</h2>
-        <p>Get started by creating an account. Have fun!</p>
+        <p>We help you count easily, without errors.</p>
 
-        <img class="landing-photo" src="/images/notes.jpg" alt="Notes" />
+
+        <img class="landing-photo" src="/images/counter.jpg" alt="Counter" />
+        <p class="counter-value">
+          Counter: <strong>{{ counter }}</strong><br />
+          <span v-if="lastAddition" style="font-size: 50%;">Last value added: {{ lastAddition }}</span>
+        </p>
         <p>
-          <router-link to="/auth/login" class="btn btn-lg btn-primary">Login</router-link> &nbsp;
-          <router-link to="/auth/signup" class="btn btn-lg btn-danger">Sign up</router-link>
+          <button class="btn btn-primary" @click="addValue(1)">Increase by 1</button> &nbsp;
+          <button class="btn btn-danger" @click="addValue(2)">Increase by 2</button>
         </p>
       </div>
     </div>
@@ -18,12 +23,26 @@
 
 <script>
 // @ is an alias to /src
+import { mapState, mapActions } from 'vuex';
 export default {
   name: 'home',
   data: function() {
     return {
-      APP_NAME: process.env.VUE_APP_NAME
+      APP_NAME: process.env.VUE_APP_NAME,
     }
+  },
+
+  computed: {
+    ...mapState({
+      counter: store => store.counter.counter,
+      lastAddition: store => store.counter.lastAddition
+    })
+  },
+
+  methods: {
+    ...mapActions({
+      addValue: 'addValue'
+    })
   }
 };
 </script>
@@ -31,9 +50,14 @@ export default {
 <style scoped>
   .landing-photo {
     width: 90%;
-    max-width: 750px;
+    max-width: 400px;
 
-    margin-top: 30px;
-    margin-bottom: 70px;
+    margin-top: 20px;
+    margin-bottom: 50px;
+  }
+
+  .counter-value {
+    font-size: 2rem;
+    margin: 30px 0;
   }
 </style>
