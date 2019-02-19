@@ -17,10 +17,10 @@
                 <div :class="'collapse navbar-collapse' + (navbarToggle ? ' show' : '')" id="navbarResponsive">
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item active">
-                            <router-link class="nav-link" to="/" @click="navbarToggle=false">Home</router-link>
+                            <router-link class="nav-link" to="/" @click.native="navbarToggle=false">Home</router-link>
                         </li>
                         <li class="nav-item">
-                            <router-link class="nav-link" to="/user/dashboard" @click="navbarToggle=false">Dashboard
+                            <router-link class="nav-link" to="/user/dashboard" @click.native="navbarToggle=false">Dashboard
                             </router-link>
                         </li>
 
@@ -40,6 +40,7 @@
 
 
 <script>
+    import { mapState, mapActions } from 'vuex';
     import ConfirmModal from "./components/ConfirmModal.vue";
     import LoadingSpinner from "./components/LoadingSpinner.vue";
 
@@ -55,15 +56,17 @@
         },
 
         computed: {
-            isAuthenticated: function () {
-                return (this.$store.state.auth.isAuthenticated);
-            }
+            ...mapState({
+                isAuthenticated: state => state.auth.isAuthenticated
+            })
         },
 
         methods: {
-            logoutUser() {
-                this.$store.dispatch('logoutUser');
-            }
+            //maps the "logoutUser" actions from the store,
+            //as a function we can call in this component/view
+            ...mapActions({
+                logoutUser: 'logoutUser'
+            })
         },
 
         components: {

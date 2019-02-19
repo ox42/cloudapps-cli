@@ -32,7 +32,8 @@
 
 <script>
   // @ is an alias to /src
-  import NotesDataMixin from "../mixins/NotesDataMixin.js";
+  import { mapState, mapActions } from 'vuex';
+  import NotesDataMixin from "@/mixins/NotesDataMixin.js";
 
   export default {
     name: 'edit-note-page',
@@ -69,13 +70,10 @@
     },
 
     computed: {
-      isUpdatingNote: function() {
-        return (this.$store.state.notes.isUpdatingNote);
-      },
-
-      failedUpdatingNote: function() {
-        return (this.$store.state.notes.failedUpdatingNote);
-      }
+      ...mapState({
+        isUpdatingNote: state => state.notes.isUpdatingNote,
+        failedUpdatingNote: state => state.notes.failedUpdatingNote
+      })
     },
 
     methods: {
@@ -86,8 +84,12 @@
           return /* don't submit form */;
         }
 
-        this.$store.dispatch('updateNote', { noteId: this.id, title: this.title, content: this.content });
-      }
+        this.updateNote({ noteId: this.id, title: this.title, content: this.content });
+      },
+
+      ...mapActions({
+        updateNote: 'updateNote'
+      })
     }
   };
 </script>

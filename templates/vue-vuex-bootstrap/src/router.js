@@ -50,8 +50,6 @@ let router = new Router({
 
 router.beforeEach((to, from, next) => {
 
-  console.log(to, from, store, store.auth);
-
   //going from unsecured to secured route?
   if (to && to.path.startsWith('/user/')) {
     if (store && !store.state.auth.isAuthenticated) {
@@ -63,7 +61,7 @@ router.beforeEach((to, from, next) => {
   //going to unsecured route?
   if (to && to.path.startsWith('/auth/')) {
     if (store && store.state.auth.isAuthenticated) {
-      return next({ path: '/auth/dashboard', replace: true });
+      return next({ path: '/user/dashboard', replace: true });
     }
   }
 

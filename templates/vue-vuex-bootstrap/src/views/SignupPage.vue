@@ -44,6 +44,8 @@
 
 <script>
   // @ is an alias to /src
+  import { mapState, mapActions } from 'vuex';
+
   export default {
     name: 'signup-page',
 
@@ -60,9 +62,9 @@
     },
 
     computed: {
-      signupErrorMessage: function() {
-        return (!this.$store.state.auth.pendingAuthRequest && this.$store.state.auth.lastError) ? this.$store.state.auth.lastError : null;
-      }
+      ...mapState({
+        signupErrorMessage: state => ((!state.auth.pendingAuthRequest && state.auth.lastError) ? state.auth.lastError : null)
+      })
     },
 
     methods: {
@@ -78,9 +80,12 @@
           return /* don't submit form */;
         }
 
-        console.log(this.name, this.email, this.password);
-        this.$store.dispatch('signUpUser', { name: this.name, email: this.email, password: this.password });
-      }
+        signUpUser({ name: this.name, email: this.email, password: this.password });
+      },
+
+      ...mapActions({
+        signUpUser: 'signUpUser'
+      })
     }
   };
 </script>

@@ -32,6 +32,8 @@
 
 <script>
 // @ is an alias to /src
+import { mapState, mapActions } from 'vuex';
+
 export default {
   name: 'login-page',
 
@@ -43,15 +45,19 @@ export default {
   },
 
   computed: {
-    loginErrorMessage: function() {
-      return (!this.$store.state.auth.pendingAuthRequest && this.$store.state.auth.lastError) ? this.$store.state.auth.lastError : null;
-    }
+    ...mapState({
+      loginErrorMessage: state => ((!state.auth.pendingAuthRequest && state.auth.lastError) ? state.auth.lastError : null)
+    })
   },
 
   methods: {
     triggerLogin: function() {
-      this.$store.dispatch('signInUser', { email: this.email, password: this.password });
-    }
+      this.signInUser({ email: this.email, password: this.password });
+    },
+
+    ...mapActions({
+      signInUser: 'signInUser'
+    })
   }
 };
 </script>

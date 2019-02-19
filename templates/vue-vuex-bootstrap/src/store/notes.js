@@ -14,6 +14,13 @@ const notes = {
 
     mutations: {
 
+        clearNotes(state) {
+            state.notes = null;
+
+            state.isLoadingNotes = false;
+            state.failedLoadingNotes = false;
+        },
+
         loadingInProgress(state) {
             state.notes = null;
 

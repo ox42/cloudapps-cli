@@ -59,8 +59,6 @@ const auth = {
 
         signUpUser({commit}, { name, email, password }) {
 
-            console.log(name, email, password);
-
             commit("authInProgress");
             handleAuthResponse(request.post('/Account', {name, email, password}), commit);
         },
@@ -69,6 +67,7 @@ const auth = {
 
             localStorage.removeItem('App-Authentication-Token');
             commit("clearAuth");
+            commit("clearNotes");
 
             router.push('/');
         }

@@ -1,21 +1,22 @@
+import { mapState, mapActions } from 'vuex';
+
 export default {
     computed: {
-        notes: function () {
-            return (this.$store.state.notes.notes);
-        },
-
-        isLoadingNotes: function () {
-            return (this.$store.state.notes.isLoadingNotes);
-        }
+        ...mapState({
+            notes: state => state.notes.notes,
+            isLoadingNotes: state => state.notes.isLoadingNotes
+        })
     },
 
     methods: {
-        loadNotes() {
-            this.$store.dispatch('loadNotes');
-        }
+        ...mapActions({
+            loadNotes: 'loadNotes'
+        })
     },
 
     created: function() {
+        //apart from mapState, mapActions
+        //we can also access the store via this.$store
         if (!this.$store.state.notes.notes) {
             this.loadNotes();
         }

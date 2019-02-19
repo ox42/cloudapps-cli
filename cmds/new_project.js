@@ -132,7 +132,7 @@ var run = function() {
                                         recursiveWalk(file);
                                     } else {
 
-                                        if (file.endsWith('.json') || file.endsWith('.js') || file.endsWith('.html')) {
+                                        if (file.endsWith('.json') || file.endsWith('.js') || file.endsWith('.html') || file.indexOf('.env') >= 0) {
 
                                             let fileContents = fs.readFile(file, 'utf8');
                                             if (fileContents.includes('{CLOUDAPPS_RANDOM_STRING_VALUE}')) {

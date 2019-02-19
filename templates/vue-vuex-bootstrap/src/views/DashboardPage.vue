@@ -45,7 +45,7 @@
 <script>
   // @ is an alias to /src
   import NotesDataMixin from "@/mixins/NotesDataMixin.js";
-  import LoadingSpinner from "../components/LoadingSpinner.vue";
+  import LoadingSpinner from "@/components/LoadingSpinner.vue";
 
   export default {
     name: 'dashboard-page',
