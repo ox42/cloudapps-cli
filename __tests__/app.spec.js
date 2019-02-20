@@ -40,7 +40,7 @@ it('should create a valid directory', function() {
         console.log('Planning to test ' + templates.length + ' templates.');
         console.log('Creating a directory: ', tests_directory);
 
-        Promise.resolve()
+        return Promise.resolve()
             .then(function(){
                 return clearDirectory(tests_directory);
             })
