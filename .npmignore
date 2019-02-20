@@ -18,5 +18,7 @@ __tests__/
 archives
 archives/
 
+.travis.yml
+
 push-to-cdn.bat
 push-to-cdn.sh
