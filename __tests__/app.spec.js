@@ -12,10 +12,10 @@ const new_project = require('../cmds/new_project');
 const { expectPrompts } = require('inquirer');
 
 
-async function clearDirectory(tests_directory) {
+function clearDirectory(tests_directory) {
 
     if (tests_directory && tests_directory.indexOf('temp') >= 0) {
-        await (new Promise(function(resolve, reject){
+        return (new Promise(function(resolve, reject){
 
             rimraf(tests_directory, (err) => {
                 if (err) {
@@ -28,9 +28,10 @@ async function clearDirectory(tests_directory) {
         }));
     }
 
+    return Promise.resolve();
 }
 
-it('should create a valid directory', async () => {
+it('should create a valid directory', function() {
     let tests_directory = path.join(__dirname, '/temp');
     let templates = (require('../templates/list.json')).templates;
 
@@ -39,34 +40,62 @@ it('should create a valid directory', async () => {
         console.log('Planning to test ' + templates.length + ' templates.');
         console.log('Creating a directory: ', tests_directory);
 
-        await clearDirectory(tests_directory);
-        fs.mkdirSync(tests_directory);
+        Promise.resolve()
+            .then(function(){
+                return clearDirectory(tests_directory);
+            })
+            .then(function(){
 
-        process.chdir(tests_directory);
+                fs.mkdirSync(tests_directory);
+                process.chdir(tests_directory);
+            })
 
-        for (let template=0; template < templates.length; template++) {
-            await Promise.delay(500);
+            .then(function(){
 
-            let directory_name = 'test-' + templates[template].value;
-            console.log('Checking template: ' + templates[template].value);
+                let iterate_templates = [];
+                for (let template=0; template < templates.length; template++) {
+                    iterate_templates.push(template);
+                }
 
-            expectPrompts([
-                 {
-                     message: 'Project name (ex. test): ',
-                     input: directory_name
-                 },
-                 {
-                     message: 'Choose a template: ',
-                     choose: template
-                 }
-            ]);
+                return iterate_templates;
+            })
+            .mapSeries(function(template){
 
-            await new_project();
-        }
+                let directory_name = 'test-' + templates[template].value;
+                console.log('Checking template: ' + templates[template].value);
 
+                expectPrompts([
+                    {
+                        message: 'Project name (ex. test): ',
+                        input: directory_name
+                    },
+                    {
+                        message: 'Choose a template: ',
+                        choose: template
+                    }
+                ]);
 
-        await Promise.delay(1000);
-        process.chdir(__dirname);
-        await clearDirectory(tests_directory);
+                return Promise.resolve()
+                    .then(function(){
+                        return new_project();
+                    })
+                    .delay(100)
+                    .then(function(){
+
+                        let stat = fs.statSync(directory_name);
+                        if (!stat || !stat.isDirectory()) {
+                            return Promise.reject('No directory created for template: ' + directory_name);
+                        }
+                    });
+            })
+
+            .delay(1000)
+            .then(function(){
+                process.chdir(__dirname);
+                return clearDirectory(tests_directory);
+            })
+            .then(function(){
+                console.log('Test completed successfully!');
+            });
     }
 });
