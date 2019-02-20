@@ -73,6 +73,7 @@ var run = function() {
 
                     {
                         type: 'list',
+                        pageSize: 10,
                         name: 'template',
                         message: 'Choose a template: ',
                         choices: templates
