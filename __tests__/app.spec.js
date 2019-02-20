@@ -31,7 +31,7 @@ function clearDirectory(tests_directory) {
     return Promise.resolve();
 }
 
-it('should create a valid directory', function() {
+it('should extract the necessary templates', function() {
     let tests_directory = path.join(__dirname, '/temp');
     let templates = (require('../templates/list.json')).templates;
 
