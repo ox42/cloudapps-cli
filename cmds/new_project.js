@@ -8,6 +8,7 @@ var inquirer = require('inquirer');
 
 var packageInfo = require('../package.json');
 var Promise = require('bluebird');
+var AdmZip = require('adm-zip');
 
 var run = function() {
 
@@ -85,11 +86,11 @@ var run = function() {
                     console.log('Fetching project archive...');
 
 
-                    var directory_name = (answers.name || '').trim().toLowerCase().replace(/[\W_]+/g, '_');
+                    var directory_name = (answers.name || '').trim().toLowerCase().replace(/[\W_]+/g, '-');
                     var project_directory = path.join(process.cwd(), directory_name);
 
                     return new Promise(function(resolve, reject){
-                        fetch(answers.name, destination, function(err){
+                        fetch(answers.template + '.zip', destination, function(err){
 
                             if (err) {
                                 console.error('\x1b[31m', err);
@@ -134,7 +135,7 @@ var run = function() {
 
                                         if (file.endsWith('.json') || file.endsWith('.js') || file.endsWith('.html') || file.indexOf('.env') >= 0) {
 
-                                            let fileContents = fs.readFile(file, 'utf8');
+                                            let fileContents = fs.readFileSync(file, 'utf8');
                                             if (fileContents.includes('{CLOUDAPPS_RANDOM_STRING_VALUE}')) {
                                                 fileContents = fileContents.replace(/{CLOUDAPPS_RANDOM_STRING_VALUE}/g, chance.hash());
 
@@ -152,7 +153,7 @@ var run = function() {
                             if (fs.existsSync(path.join(project_directory, 'note.nfo'))) {
 
                                 return new Promise(function(resolve){
-                                    fs.readFile(path.join(project_directory, 'note.nfo'), function(error, content){
+                                    fs.readFile(path.join(project_directory, 'note.nfo'), 'utf8', function(error, content){
 
                                         if (!error && content) {
                                             resolve(content);
@@ -167,6 +168,8 @@ var run = function() {
                         }).then(function(note){
 
                             console.log('==================');
+                            console.log();
+                            console.log();
                             console.log('Project successfully created.');
                             console.log('Go to the project directory to play with it.');
 
@@ -176,7 +179,7 @@ var run = function() {
                                 console.log();
                             }
 
-                            console.log('Good luck, and don\'t get to have fun!');
+                            console.log('Good luck, and don\'t forget to have fun!');
                         });
 
 

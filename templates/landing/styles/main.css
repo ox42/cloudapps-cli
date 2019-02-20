@@ -207,7 +207,9 @@ div.footer img {
     text-align: center;
 
     box-shadow: 3px 3px #353535;
-    background-color: #5b4260;
+
+    background-color: #173b9c;
+    background-color: rgba(23, 59, 142, 0.93);
 
     margin: 5px 15px;
 }

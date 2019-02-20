@@ -4,9 +4,16 @@
 .idea/
 
 templates
+templates/
 
 node_modules
 node_modules/
+
+__mocks__
+__mocks__/
+
+__tests__
+__tests__/
 
 archives
 archives/
