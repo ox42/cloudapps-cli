@@ -5,8 +5,10 @@ jest.setTimeout(3 * 60 * 1000);
 
 const fs = require('fs');
 const path = require('path');
+const glob = require('glob');
 const rimraf = require('rimraf');
 const process = require('process');
+const fileComparison = require('./file-comparison');
 const new_project = require('../cmds/new_project');
 
 const { expectPrompts } = require('inquirer');
@@ -86,6 +88,30 @@ it('should extract the necessary templates', function() {
                         if (!stat || !stat.isDirectory()) {
                             return Promise.reject('No directory created for template: ' + directory_name);
                         }
+                    })
+                    .then(function(){
+
+                        return (new Promise(function(resolve, reject){
+
+                            glob(directory_name + "/**", function (err, files) {
+
+                                if (err) {
+                                    return reject(err);
+                                }
+
+                                for (let file1 of files) {
+                                    let file2 = path.resolve(file1.replace(directory_name, '../../templates/' + directory_name.replace('test-', '')));
+
+                                    if (fs.statSync(file1) && !fs.statSync(file1).isDirectory()) {
+                                        if (file1.endsWith('.html') || file1.endsWith('.js') || file1.endsWith('.json') || file1.endsWith('.css') || file1.endsWith('.jsx')) {
+                                            fileComparison(file1, file2);
+                                        }
+                                    }
+                                }
+
+                                resolve();
+                            });
+                        }));
                     });
             })
 
