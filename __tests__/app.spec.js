@@ -21,7 +21,7 @@ function clearDirectory(tests_directory) {
 
             rimraf(tests_directory, (err) => {
                 if (err) {
-                    console.log(err);
+                    console.error(err);
                     return reject(err);
                 }
 

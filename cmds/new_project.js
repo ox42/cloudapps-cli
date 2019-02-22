@@ -87,7 +87,7 @@ var run = function() {
                     console.log('Fetching project archive...');
 
 
-                    var directory_name = (answers.name || '').trim().toLowerCase().replace(/[\W_]+/g, '-');
+                    var directory_name = ((answers.name || '').trim().toLowerCase().replace(/[\W_]+/g, '-') || 'test');
                     var project_directory = path.join(process.cwd(), directory_name);
 
                     return new Promise(function(resolve, reject){

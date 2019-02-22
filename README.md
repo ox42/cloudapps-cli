@@ -16,7 +16,7 @@ Afterwards, you can run "cloudapps new" to create a new project from one of our 
 cloudapps new
 ```
 
-You should set a name for your new project, and choose the template that works best for you. The following templates are currently supported:
+You should set a name for your new project, and choose the template that works best for you. The following templates are currently available:
 
 * A simple Bootstrap starter page
 * A landing page template based on Bootstrap
