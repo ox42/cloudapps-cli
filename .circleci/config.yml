@@ -25,3 +25,15 @@ jobs:
 
       # run tests!
       - run: yarn test
+workflows:
+  version: 2
+  nightly:
+    triggers:
+      - schedule:
+          cron: "15 20 * * *"
+          filters:
+            branches:
+              only:
+                - master
+    jobs:
+      - build
