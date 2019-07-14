@@ -69,7 +69,7 @@ router.post('/note/:id/edit', helpers.verifyAuthorized, asyncWrap(async (req, re
   }
 
 
-  let note = await models.Note.findById(req.params.id);
+  let note = await models.Note.findByPk(req.params.id);
 
   if (!note || note.get('userId') != req.user.id) {
     return res.status(400).send({ message: "This note doesn't belong to you." });

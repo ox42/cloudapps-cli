@@ -8,27 +8,27 @@
     "build": "gulp build"
   },
   "dependencies": {
-    "bluebird": "^3.5.3",
-    "body-parser": "^1.18.3",
-    "config": "^3.0.1",
+    "bluebird": "^3.5.5",
+    "body-parser": "^1.19.0",
+    "config": "^3.2.0",
     "cookie-parser": "~1.4.4",
-    "debug": "~2.6.9",
-    "ejs": "~2.6.1",
-    "express": "~4.16.4",
-    "gulp": "^4.0.0",
-    "gulp-cache-bust": "^1.4.0",
-    "gulp-clean-css": "^4.0.0",
+    "debug": "~4.1.1",
+    "ejs": "~2.6.2",
+    "express": "~4.17.1",
+    "gulp": "^4.0.2",
+    "gulp-cache-bust": "^1.4.1",
+    "gulp-clean-css": "^4.2.0",
     "gulp-concat": "^2.6.1",
     "gulp-nodemon": "^2.4.2",
-    "gulp-uglify": "^3.0.1",
-    "http-errors": "~1.6.2",
-    "lodash": "^4.17.11",
+    "gulp-uglify": "^3.0.2",
+    "http-errors": "~1.7.3",
+    "lodash": "^4.17.14",
     "moment": "^2.24.0",
-    "morgan": "~1.9.0"
+    "morgan": "~1.9.1"
   },
   "devDependencies": {
-    "@babel/core": "^7.2.2",
-    "@babel/preset-env": "^7.3.1",
+    "@babel/core": "^7.5.4",
+    "@babel/preset-env": "^7.5.4",
     "gulp-babel": "^8.0.0"
   }
 }
