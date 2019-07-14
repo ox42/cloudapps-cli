@@ -18,6 +18,8 @@ __tests__/
 archives
 archives/
 
+.circleci
+.circleci/
 .travis.yml
 
 push-to-cdn.bat
