@@ -80,7 +80,7 @@
           return /* don't submit form */;
         }
 
-        signUpUser({ name: this.name, email: this.email, password: this.password });
+        this.signUpUser({ name: this.name, email: this.email, password: this.password });
       },
 
       ...mapActions({
