@@ -1,6 +1,6 @@
 # How to use the "cloudapps" cli  ![Travis CI](https://travis-ci.org/ox42/cloudapps-cli.svg?branch=master)
 
-The cloudapps-cli offers a set of awesome starter kits (boilerplate code) for projects based on Bootstrap, Express, React or Vue.
+The cloudapps-cli offers a set of awesome starter kits (boilerplate code) for projects based on Bootstrap, Express, React or Vue. Tested on Windows, Linux and macOS.
 
 To get started, make sure you have Node.js installed and type the following command in a Terminal or a Command Prompt:
 
