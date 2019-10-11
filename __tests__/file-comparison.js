@@ -14,8 +14,8 @@ function compare(file1, file2) {
 
     for (let i=0; i<lines1.length; i++) {
         if (lines1[i].trim() !== lines2[i].trim()) {
-            if (lines1[i].trim().indexOf('SECRET') < 0 && lines1[i].trim().indexOf('KEY') < 0) {
-                throw new Error(('Invalid file content: ' + file1 + ' - ' + lines1[i]));
+            if (lines1[i].indexOf('SECRET') < 0 && lines1[i].indexOf('KEY') < 0) {
+                throw new Error(('Invalid file contents: ' + file1 + ' - ' + lines1[i]));
             }
         }
     }

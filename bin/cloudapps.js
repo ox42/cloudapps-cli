@@ -9,6 +9,6 @@ var argv = require('yargs')
             newProject();
         }
     )
-    .demandCommand(1, '(HELP) In short, please run "cloudapps new" to create a new project, or --help for more.')
+    .demandCommand(1, '(HELP) In short, please run "cloudapps new" to create a new project, or use --help for more.')
     .help('help')
     .argv;

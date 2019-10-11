@@ -2,7 +2,7 @@
 
 The cloudapps-cli offers a set of awesome starter kits (boilerplate code) for projects based on Bootstrap, Express, React or Vue. Tested on Windows, Linux and macOS.
 
-To get started, make sure you have Node.js installed and type the following command in a Terminal or a Command Prompt:
+To get started, make sure you have Node.js installed and type the following command in a Terminal or a Command Prompt to install "cloudapps" globally:
 
 ```
 npm install -g cloudapps
