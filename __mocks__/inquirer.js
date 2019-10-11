@@ -2,7 +2,7 @@ let pendingAssertions = undefined;
 
 exports.prompt = prompts => {
     if (!pendingAssertions) {
-        throw new Error(`inquirer was mocked and used without pending assertions: ${prompts}`)
+        throw new Error(`inquirer was mocked and used without pending assertions: ${prompts}`);
     }
 
     const answers = {};
@@ -18,7 +18,7 @@ exports.prompt = prompts => {
             if (prompt.validate) {
                 const res = prompt.validate(val);
                 if (res !== true) {
-                    throw new Error(`validation failed for prompt: ${prompt}`)
+                    throw new Error(`validation failed for prompt: ${prompt}`);
                 }
             }
             answers[prompt.name] = prompt.filter
@@ -82,5 +82,5 @@ exports.prompt = prompts => {
 };
 
 exports.expectPrompts = assertions => {
-    pendingAssertions = assertions
+    pendingAssertions = assertions;
 };
