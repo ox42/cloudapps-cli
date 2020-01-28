@@ -180,7 +180,7 @@ var run = function() {
                                 console.log();
                             }
 
-                            console.log('Good luck, and don\'t forget to have fun!');
+                            console.log('Good luck, and always remember to have fun!');
                         });
 
 

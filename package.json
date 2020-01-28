@@ -1,6 +1,6 @@
 {
   "name": "cloudapps",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Smart application generator",
   "bin": {
     "cloudapps": "./bin/cloudapps.js"
@@ -34,12 +34,12 @@
   ],
   "dependencies": {
     "adm-zip": "^0.4.13",
-    "bluebird": "^3.7.0",
+    "bluebird": "^3.7.2",
     "inquirer": "^6.5.2",
     "yargs": "^13.3.0"
   },
   "devDependencies": {
-    "glob": "^7.1.4",
+    "glob": "^7.1.6",
     "jest": "^24.9.0",
     "rimraf": "^2.7.1"
   }

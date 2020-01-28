@@ -8,6 +8,7 @@ node_js:
   - "10"
   - "11"
   - "12"
+  - "13"
 matrix:
   include:
     - node_js: "10"
