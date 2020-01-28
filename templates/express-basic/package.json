@@ -8,12 +8,12 @@
     "build": "gulp build"
   },
   "dependencies": {
-    "bluebird": "^3.5.5",
+    "bluebird": "^3.7.2",
     "body-parser": "^1.19.0",
-    "config": "^3.2.2",
+    "config": "^3.2.5",
     "cookie-parser": "~1.4.4",
     "debug": "~4.1.1",
-    "ejs": "~2.7.1",
+    "ejs": "~2.7.4",
     "express": "~4.17.1",
     "gulp": "^4.0.2",
     "gulp-cache-bust": "^1.4.1",
@@ -27,8 +27,8 @@
     "morgan": "~1.9.1"
   },
   "devDependencies": {
-    "@babel/core": "^7.6.0",
-    "@babel/preset-env": "^7.6.0",
+    "@babel/core": "^7.8.3",
+    "@babel/preset-env": "^7.8.3",
     "gulp-babel": "^8.0.0"
   }
 }
